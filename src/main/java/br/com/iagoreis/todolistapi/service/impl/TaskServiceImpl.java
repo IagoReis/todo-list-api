@@ -53,7 +53,7 @@ public class TaskServiceImpl implements TaskService {
 	}
 
 	@Override
-	public Task getById(UUID id) throws Exception {
+	public Task get(UUID id) throws Exception {
 		
 		final Optional<Task> taskOptional = taskDao.findById(id);
 		
@@ -65,7 +65,7 @@ public class TaskServiceImpl implements TaskService {
 	}
 	
 	@Override
-	public Boolean deleteById(UUID id) throws Exception {
+	public Boolean delete(UUID id) throws Exception {
 		
 		final Optional<Task> taskOptional = taskDao.findById(id);
 		
