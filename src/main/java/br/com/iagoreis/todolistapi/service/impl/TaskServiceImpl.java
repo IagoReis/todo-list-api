@@ -34,9 +34,22 @@ public class TaskServiceImpl implements TaskService {
 	}
 
 	@Override
-	public Task update(UUID id, TaskRequest taskRequest) {
-		// TODO Auto-generated method stub
-		return null;
+	public Task update(UUID id, TaskRequest taskRequest) throws Exception {
+		
+		final Optional<Task> taskOptional = taskDao.findById(id);
+		
+		if (taskOptional.isEmpty()) {
+			throw new Exception("Task não encontrada");
+		}
+		
+		final Task task = taskOptional.get();
+		
+		task.setDescription(taskRequest.getDescription());
+		task.setStatus(taskRequest.getStatus());
+		
+		final Task taskUpdated = taskDao.save(task);
+		
+		return taskUpdated;
 	}
 
 	@Override
@@ -49,6 +62,20 @@ public class TaskServiceImpl implements TaskService {
 		}
 		
 		return taskOptional.get();
+	}
+	
+	@Override
+	public Boolean deleteById(UUID id) throws Exception {
+		
+		final Optional<Task> taskOptional = taskDao.findById(id);
+		
+		if (taskOptional.isEmpty()) {
+			throw new Exception("Task não encontrada");
+		}
+		
+		taskDao.delete(taskOptional.get());
+		
+		return Boolean.TRUE;
 	}
 
 	@Override

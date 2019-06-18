@@ -6,6 +6,7 @@ import java.util.UUID;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,6 +30,13 @@ public class TaskController {
 		final Task task = taskService.getById(id);
 		
 		return task;
+	}
+	
+	@DeleteMapping("/v1/task/{id}")
+	public Boolean deleteById(@PathVariable @Valid UUID id) throws Exception {
+		Boolean isDeleted = taskService.deleteById(id);
+		
+		return isDeleted;
 	}
 	
 	@GetMapping("/v1/task")
