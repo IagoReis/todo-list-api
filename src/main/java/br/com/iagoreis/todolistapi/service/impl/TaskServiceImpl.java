@@ -1,5 +1,9 @@
 package br.com.iagoreis.todolistapi.service.impl;
 
+import java.util.Collection;
+import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -27,6 +31,32 @@ public class TaskServiceImpl implements TaskService {
 		final Task taskSaved = taskDao.save(task);
 		
 		return taskSaved;
+	}
+
+	@Override
+	public Task update(UUID id, TaskRequest taskRequest) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Task getById(UUID id) throws Exception {
+		
+		final Optional<Task> taskOptional = taskDao.findById(id);
+		
+		if (taskOptional.isEmpty()) {
+			throw new Exception("Task não encontrada");
+		}
+		
+		return taskOptional.get();
+	}
+
+	@Override
+	public Collection<Task> getAll() {
+		
+		final Collection<Task> tasks = taskDao.findAll();
+		
+		return tasks;
 	}
 	
 }

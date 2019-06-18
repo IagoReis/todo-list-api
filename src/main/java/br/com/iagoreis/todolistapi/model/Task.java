@@ -3,6 +3,7 @@ package br.com.iagoreis.todolistapi.model;
 import java.io.Serializable;
 import java.util.UUID;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.cassandra.core.cql.Ordering;
 import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
 import org.springframework.data.cassandra.core.mapping.Column;
@@ -15,7 +16,8 @@ import br.com.iagoreis.todolistapi.config.TaskStatus;
 public class Task implements Serializable {
 
 	private static final long serialVersionUID = -3148155520391005699L;
-
+	
+	@Id
 	@PrimaryKeyColumn(type = PrimaryKeyType.PARTITIONED, ordering = Ordering.DESCENDING)
 	private UUID id;
 
