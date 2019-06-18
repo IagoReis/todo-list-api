@@ -6,6 +6,7 @@ import java.util.UUID;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,38 +30,38 @@ public class TaskController {
 	
 	
 	@PostMapping("/v1/task")
-	public Task insert(@RequestBody @Valid TaskRequest taskRequest) {
+	public ResponseEntity<Task> insert(@RequestBody @Valid TaskRequest taskRequest) {
 		final Task task = taskService.insert(taskRequest);
 		
-		return task;
+		return ResponseEntity.ok(task);
 	}
 	
 	@GetMapping("/v1/task")
-	public Collection<Task> getAll() {
+	public ResponseEntity<Collection<Task>> getAll() {
 		final Collection<Task> tasks = taskService.getAll();
 		
-		return tasks;
+		return ResponseEntity.ok(tasks);
 	}
 	
 	@GetMapping("/v1/task/{id}")
-	public Task getById(@PathVariable @Valid UUID id) throws Exception {
+	public ResponseEntity<Task> getById(@PathVariable @Valid UUID id) throws Exception {
 		final Task task = taskService.getById(id);
 		
-		return task;
+		return ResponseEntity.ok(task);
 	}
 	
 	@PutMapping("/v1/task/{id}")
-	public Task deleteById(@PathVariable @Valid UUID id, @RequestBody @Valid TaskRequest taskRequest) throws Exception {
+	public ResponseEntity<Task> deleteById(@PathVariable @Valid UUID id, @RequestBody @Valid TaskRequest taskRequest) throws Exception {
 		final Task task = taskService.update(id, taskRequest);
 		
-		return task;
+		return ResponseEntity.ok(task);
 	}
 	
 	@DeleteMapping("/v1/task/{id}")
-	public Boolean deleteById(@PathVariable @Valid UUID id) throws Exception {
-		Boolean isDeleted = taskService.deleteById(id);
+	public ResponseEntity<Boolean> deleteById(@PathVariable @Valid UUID id) throws Exception {
+		Boolean isDeleted = taskService.delete(id);
 		
-		return isDeleted;
+		return ResponseEntity.ok(isDeleted);
 	}
 	
 }

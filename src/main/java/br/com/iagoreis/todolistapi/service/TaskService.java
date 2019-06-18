@@ -14,7 +14,7 @@ public interface TaskService {
 	
 	Task update(UUID id, TaskRequest taskRequest) throws Exception;
 	
-	Task get(UUID id) throws Exception;
+	Task getById(UUID id) throws Exception;
 	
 	Collection<Task> getAll();
 
