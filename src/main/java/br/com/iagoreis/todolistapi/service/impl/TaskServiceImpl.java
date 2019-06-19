@@ -39,7 +39,7 @@ public class TaskServiceImpl implements TaskService {
 		
 		final Task taskSaved = taskDao.save(task);
 		
-		logger.info("Task inserida com sucesso: {}", taskRequest);
+		logger.info("Task inserida com sucesso: {}", taskSaved);
 		
 		return taskSaved;
 	}
