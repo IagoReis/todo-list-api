@@ -3,15 +3,18 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.1.5.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
+	
 	<groupId>br.com.iagoreis</groupId>
 	<artifactId>todo-list-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	
 	<name>todo-list-api</name>
 	<description>TODO List API</description>
 
@@ -48,6 +51,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-log4j2</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -61,22 +69,22 @@
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>1.2.0</version>
-				
+
 				<configuration>
 					<imageName>${artifactId}</imageName>
 					<dockerDirectory>.docker</dockerDirectory>
-					
+
 					<forceTags>true</forceTags>
-					
-			        <imageTags>
-			           <imageTag>${version}</imageTag>
-           				<imageTag>latest</imageTag>
-			        </imageTags>
-					
+
+					<imageTags>
+						<imageTag>${version}</imageTag>
+						<imageTag>latest</imageTag>
+					</imageTags>
+
 					<buildArgs>
-        				<JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
-      				</buildArgs>
-      				
+						<JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+					</buildArgs>
+
 					<resources>
 						<resource>
 							<targetPath>/</targetPath>
