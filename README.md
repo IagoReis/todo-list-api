@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS todolist.task (id uuid, description text, status text
 **Passo 01:** Criar imagem customizada do projeto
 
 Dentro da raiz do projeto criar imagem customizada utilizando o comando
+
 ```
 mvn clean package docker:build
 ```
@@ -44,8 +45,11 @@ Após executar os dois passos acima, o TODO List estará disponível no endereç
 ### Cadastrar tarefa
 
 Método de requisição: POST
-Endpoint: <HOST>:<PORT>/api/v1/task/
+
+Endpoint: `<HOST>`:`<PORT>`/api/v1/task/
+
 Parâmetros: 
+
 ```
 {
     "description": "<DESCRICAO>",
@@ -53,6 +57,7 @@ Parâmetros:
 }
 ```
 Exemplo de requisição cURL:
+
 ```
 curl -H "Content-Type: application/json" -X POST -d '{"description":"Teste de Tarefa","status":"PENDING"}' http://localhost:8000/api/v1/task
 ```
@@ -60,8 +65,11 @@ curl -H "Content-Type: application/json" -X POST -d '{"description":"Teste de Ta
 ### Consultar todas as tarefas
 
 Método de requisição: GET
-Endpoint: <HOST>:<PORT>/api/v1/task/
+
+Endpoint: `<HOST>`:`<PORT>`/api/v1/task/
+
 Exemplo de requisição cURL:
+
 ```
 curl -H "Content-Type: application/json" -X GET http://localhost:8000/api/v1/task
 ```
@@ -69,24 +77,32 @@ curl -H "Content-Type: application/json" -X GET http://localhost:8000/api/v1/tas
 ### Consultar tarefa por id
 
 Método de requisição: GET
-Endpoint: <HOST>:<PORT>/api/v1/task/<ID_TASK>
+
+Endpoint: `<HOST>`:`<PORT>`/api/v1/task/<ID_TASK>
+
 Exemplo de requisição cURL:
+
 ```
 curl -H "Content-Type: application/json" -X GET http://localhost:8000/api/v1/task/963916b0-9255-11e9-9758-f78468c1ccd8
 ```
 
- ### Editar tarefa
+### Editar tarefa
 
 Método de requisição: PUT
-Endpoint: <HOST>:<PORT>/api/v1/task/<ID_TASK>
+
+Endpoint: `<HOST>`:`<PORT>`/api/v1/task/<ID_TASK>
+
 Parâmetros: 
+
 ```
 {
     "description": "<DESCRICAO>",
     "status": "<STATUS>"
 }
 ```
+
 Exemplo de requisição cURL:
+
 ```
 curl -H "Content-Type: application/json" -X PUT -d '{"description":"Teste de Tarefa","status":"COMPLETED"}' http://localhost:8000/api/v1/task/963916b0-9255-11e9-9758-f78468c1ccd8
 ```
@@ -94,18 +110,23 @@ curl -H "Content-Type: application/json" -X PUT -d '{"description":"Teste de Tar
 ### Excluir tarefa por id
 
 Método de requisição: DELETE
-Endpoint: <HOST>:<PORT>/api/v1/task/<ID_TASK>
+
+Endpoint: `<HOST>`:`<PORT>`/api/v1/task/<ID_TASK>
+
 Exemplo de requisição cURL:
+
 ```
 curl -H "Content-Type: application/json" -X DELETE http://localhost:8000/api/v1/task/963916b0-9255-11e9-9758-f78468c1ccd8
 ```
 
 ## Helthcheck
 
-É possível consultar o status do projeto através do endereço `http://<HOST>:<PORT>/actuator/health`
+É possível consultar o status do projeto através do endereço `http://<HOST>:<PORT>/actuator/health`.
+
 Exemplo: http://localhost:8000/actuator/health/
 
 ## Métricas
 
-É possível consultar o tempo e status das requisições no endereço  `http://<HOST>:<PORT>/actuator/metrics/http.server.requests`
+É possível consultar o tempo e status das requisições no endereço `http://<HOST>:<PORT>/actuator/metrics/http.server.requests`.
+
 Exemplo: http://localhost:8000/actuator/metrics/http.server.requests
