@@ -8,6 +8,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Collection;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ public class TodoListApiApplicationTests {
 	@Autowired
 	TaskService taskService;
 	
+	@Ignore
 	@Test
 	public void insertTask() {
 		
@@ -38,6 +40,7 @@ public class TodoListApiApplicationTests {
 		assertEquals(taskRequest.getStatus(), taskSaved.getStatus());
 	}
 	
+	@Ignore
 	@Test
 	public void selectTask() throws Exception {
 		
@@ -53,6 +56,7 @@ public class TodoListApiApplicationTests {
 		assertEquals(task.getStatus(), taskSaved.getStatus());
 	}
 	
+	@Ignore
 	@Test
 	public void selectTasks() {
 		final Collection<Task> tasks = taskService.getAll();
@@ -61,6 +65,7 @@ public class TodoListApiApplicationTests {
 		assertFalse(tasks.isEmpty());
 	}
 	
+	@Ignore
 	@Test
 	public void updateTask() throws Exception {
 		
@@ -80,6 +85,7 @@ public class TodoListApiApplicationTests {
 		
 	}
 	
+	@Ignore
 	@Test
 	public void deleteTask() throws Exception {
 		
