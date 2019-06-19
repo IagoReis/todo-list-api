@@ -1,0 +1,24 @@
+version: "2.1"
+
+services:
+  cassandra:
+    image: cassandra:3.11
+    environment:
+      - "HEAP_NEWSIZE=512M"
+      - "MAX_HEAP_SIZE=1024M"
+    volumes:
+      - "./cassandra-init.sh:/cassandra-init.sh"
+    command: "sh /cassandra-init.sh"
+    healthcheck:
+      test: ["CMD", "cqlsh", "-u cassandra", "-p cassandra" ,"-e describe keyspaces"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+
+  todolist:
+    image: todo-list-api:latest
+    depends_on:
+      cassandra:
+        condition: service_healthy
+    ports: 
+      - "8000:8080"

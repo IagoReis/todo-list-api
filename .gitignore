@@ -21,3 +21,39 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/target/
+
+## Eclipse configuration files
+.classpath
+.checkstyle
+.index
+.project
+.settings/
+*/**/*.classpath
+newVersion.prop
+
+## Maven compiled files
+target/
+bin/
+
+## Gedit temporary files
+*~
+
+## Binary files
+*.class
+
+hs_err_pid*.*
+release.properties
+
+## Reconf files
+*/**/remote.properties
+*/**/remote.script
+
+## Project Test files
+*/**/paineldev.test.properties
+
+## Jenkins tmṕ files
+versions.properties
+
+## Bower
+*/**/bower_components
