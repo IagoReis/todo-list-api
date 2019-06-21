@@ -1,7 +1,7 @@
 version: "2.1"
 
 services:
-  cassandra:
+  cassandra-teste:
     image: cassandra:3.11
     environment:
       - "HEAP_NEWSIZE=512M"

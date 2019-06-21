@@ -12,50 +12,50 @@ O projeto foi desenvolvido em Java utilizando Spring Boot e banco de dados em Ca
 
 ## Como subir o projeto com Docker e Docker Compose?
 
-O projeto já possui os arquivos necessários para ser executado local em um ambiente Docker.
+O projeto já possui os arquivos necessários para ser executado localmente em um ambiente Docker.
 
 **Porta de execução do projeto:** Conforme configurado no arquivo `.docker/docker-compose.yaml` o container será exposto para a porta 8000 da máquina local.
 
-**Cassandra:** Conforme o arquivo `.docker/Dockerfile` a imagem docker do projeto está configurada para rodar local, se conectando no host `cassandra` e porta `9042` do cassandra que serão criados pelo Docker Compose. Mas é possível alterar o endereço do Cassandra, basta alterar as propriedades `spring.data.cassandra.host` e `spring.data.cassandra.port`.
+**Cassandra:** Conforme o arquivo `.docker/Dockerfile` a imagem está configurada para se conectar no host `cassandra` e porta `9042` do Cassandra que serão criados pelo Docker Compose. Mas é possível apontar o banco para outro endereço, basta alterar as propriedades `spring.data.cassandra.host` e `spring.data.cassandra.port` no `.docker/Dockerfile`.
 
-**Observação:** Caso altere o endereço do Cassandra, deverá criar o Keyspace e Table no novo banco de dados. *Nâo sendo necessário executar este comando caso opte pela configuração padrão descrita nos dois passos abaixo.*
+**Observação:** Caso altere o endereço do Cassandra, deverá criar o Keyspace e Table no novo banco de dados apontado.
 
 ```
 CREATE KEYSPACE IF NOT EXISTS todolist WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '1'} AND durable_writes = true;
 CREATE TABLE IF NOT EXISTS todolist.task (id uuid, description text, status text, PRIMARY KEY(id))
 ```
 
-**Passo 00:** Criar o banco de dados de testes
+**Passo 00:** Criar o banco de dados de testes (é possível pular esta etapa conforme descrito no passo 01)
 
-O projeto está configurado para se conectar no host `127.0.0.1` e porta `9050` do cassandra durante os testes.
+O projeto está configurado para se conectar na máquina local (host `127.0.0.1`) e porta `9050` do cassandra durante os testes.
 
-Para subir o banco de dados de testes já configurado, basta executar o comando abaixo:
+Para subir o banco de dados de testes já configurado, basta executar o comando abaixo no terminal:
 
 ```
-docker-compose -f .docker/docker-compose-cassandra.yaml up -d
+docker-compose -f .docker/docker-compose-cassandra-teste.yaml up -d
 ```
 
-**Passo 01:** Criar imagem customizada do projeto
+**Passo 01:** Criar a imagem customizada do projeto
 
-Dentro da raiz do projeto criar imagem customizada utilizando o comando
+Dentro da raiz do projeto criar a imagem customizada executando este comando no terminal:
 
 ```
 mvn clean package docker:build
 ```
 
-Ou executar o comando abaixo para gerar a imagem do projeto sem executar os testes
+Ou executar o comando abaixo para gerar a imagem do projeto sem os testes:
 
 ```
 mvn clean package docker:build -DskipTests
 ```
 
-**Passo 02:** Executar projeto já com o banco de dados
+**Passo 02:** Disponibilizar o projeto
 
 ```
 docker-compose -f .docker/docker-compose.yaml up
 ```
 
-Após executar os dois passos acima, o TODO List estará disponível no endereço http://localhost:8000
+Após executar os passos acima, o TODO List já estará disponível para receber requisições no endereço http://localhost:8000
 
 ## Enpoints
 
