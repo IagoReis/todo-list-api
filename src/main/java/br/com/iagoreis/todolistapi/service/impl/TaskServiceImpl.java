@@ -103,7 +103,7 @@ public class TaskServiceImpl implements TaskService {
 		
 		taskDao.delete(taskOptional.get());
 		
-		logger.info("Task retornada com sucesso: {}", taskOptional.get());
+		logger.info("Task excluida com sucesso: {}", id);
 		
 		return Boolean.TRUE;
 	}
