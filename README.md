@@ -98,7 +98,7 @@ curl -H "Content-Type: application/json" -X GET http://localhost:8000/api/v1/tas
 
 Método HTTP: GET
 
-Endpoint: `<HOST>`:`<PORT>`/api/v1/task/<ID>
+Endpoint: `<HOST>`:`<PORT>`/api/v1/task/`<ID>`
 
 Parâmetros da URL:
 
@@ -114,7 +114,7 @@ curl -H "Content-Type: application/json" -X GET http://localhost:8000/api/v1/tas
 
 Método HTTP: PUT
 
-Endpoint: `<HOST>`:`<PORT>`/api/v1/task/<ID>
+Endpoint: `<HOST>`:`<PORT>`/api/v1/task/`<ID>`
 
 Parâmetros da URL:
 
@@ -138,11 +138,11 @@ Exemplo de requisição cURL:
 curl -H "Content-Type: application/json" -X PUT -d '{"description":"Teste de Tarefa","status":"COMPLETED"}' http://localhost:8000/api/v1/task/963916b0-9255-11e9-9758-f78468c1ccd8
 ```
 
-### Excluir tarefa por id
+### Excluir tarefa
 
 Método HTTP: DELETE
 
-Endpoint: `<HOST>`:`<PORT>`/api/v1/task/<ID>
+Endpoint: `<HOST>`:`<PORT>`/api/v1/task/`<ID>`
 
 Parâmetros da URL:
 
